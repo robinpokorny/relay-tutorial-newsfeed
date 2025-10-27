@@ -1,14 +1,6 @@
 import * as React from "react";
 import SmallSpinner from "./SmallSpinner";
-
-// In a real app this would be imported from NewsfeedQuery.graphql; it is only defined
-// separately here to make the step-by-step examples work when partially completed.
-type Category =
-  | "ALL"
-  | "COOKING"
-  | "EDUCATION"
-  | "NEWS"
-  | "%future added value";
+import { Category } from "./__generated__/NewsfeedQuery.graphql";
 
 export default function CategorySelector({
   value,

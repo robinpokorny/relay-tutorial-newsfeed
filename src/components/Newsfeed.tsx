@@ -1,14 +1,18 @@
 import * as React from "react";
 import { graphql, useLazyLoadQuery, usePaginationFragment } from "react-relay";
-import type { NewsfeedQuery as NewsfeedQueryType } from "./__generated__/NewsfeedQuery.graphql";
+import type {
+  NewsfeedQuery as NewsfeedQueryType,
+  Category,
+} from "./__generated__/NewsfeedQuery.graphql";
 import type { NewsfeedContentsFragment$key } from "./__generated__/NewsfeedContentsFragment.graphql";
 import Story from "./Story";
 import InfiniteScrollTrigger from "./InfiniteScrollTrigger";
+import CategorySelector from "./CategorySelector";
 
 const NewsfeedQuery = graphql`
-  query NewsfeedQuery {
+  query NewsfeedQuery($category: Category) {
     viewer {
-      ...NewsfeedContentsFragment
+      ...NewsfeedContentsFragment @arguments(category: $category)
     }
   }
 `;
@@ -19,8 +23,9 @@ const NewsfeedContentsFragment = graphql`
   @argumentDefinitions(
     cursor: { type: "String" }
     count: { type: "Int", defaultValue: 3 }
+    category: { type: "Category" }
   ) {
-    newsfeedStories(after: $cursor, first: $count)
+    newsfeedStories(after: $cursor, first: $count, category: $category)
       @connection(key: "NewsfeedContentsFragment_newsfeedStories") {
       edges {
         node {
@@ -37,13 +42,28 @@ const NewsfeedContentsFragment = graphql`
 `;
 
 export default function Newsfeed() {
-  const queryData = useLazyLoadQuery<NewsfeedQueryType>(NewsfeedQuery, {});
-  return <NewsfeedContents queryData={queryData.viewer} />;
+  const [category, setCategory] = React.useState<Category>("ALL");
+
+  const queryData = useLazyLoadQuery<NewsfeedQueryType>(NewsfeedQuery, {
+    category: category === "ALL" ? null : category,
+  });
+
+  return (
+    <NewsfeedContents
+      category={category}
+      setCategory={setCategory}
+      queryData={queryData.viewer}
+    />
+  );
 }
 
 function NewsfeedContents({
+  category,
+  setCategory,
   queryData,
 }: {
+  category: Category;
+  setCategory: (category: Category) => void;
   queryData: NewsfeedContentsFragment$key;
 }) {
   const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment(
@@ -57,6 +77,7 @@ function NewsfeedContents({
 
   return (
     <div className="newsfeed">
+      <CategorySelector value={category} onChange={setCategory} />
       {data.newsfeedStories.edges.map((edge) => (
         <Story key={edge.node.id} story={edge.node} />
       ))}

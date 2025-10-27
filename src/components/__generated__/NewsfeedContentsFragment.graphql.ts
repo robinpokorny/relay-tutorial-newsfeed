@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<049ccd54f66ec5f48bb83511069eb4fc>>
+ * @generated SignedSource<<e2745bd5ef99036e8140971635ba2093>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -38,6 +38,11 @@ var v0 = [
 ];
 return {
   "argumentDefinitions": [
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "category"
+    },
     {
       "defaultValue": 3,
       "kind": "LocalArgument",
@@ -78,7 +83,13 @@ return {
   "selections": [
     {
       "alias": "newsfeedStories",
-      "args": null,
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "category",
+          "variableName": "category"
+        }
+      ],
       "concreteType": "StoriesConnection",
       "kind": "LinkedField",
       "name": "__NewsfeedContentsFragment_newsfeedStories_connection",
@@ -166,6 +177,6 @@ return {
 };
 })();
 
-(node as any).hash = "6b5762e056e1daf14ccb948d2e7bccd3";
+(node as any).hash = "c4549dfcbd847a481a3ed0318f4b887d";
 
 export default node;
