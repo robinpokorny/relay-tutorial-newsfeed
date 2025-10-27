@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fca14201bdf4b9e18101f543b4ad7cac>>
+ * @generated SignedSource<<d5c66a5422f6b78d7eb2244d4d5ac3db>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,15 +8,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest, Query } from 'relay-runtime';
+import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ContactsListRefetchQuery$variables = {
-  search?: string | null;
+  search?: string | null | undefined;
 };
 export type ContactsListRefetchQuery$data = {
   readonly viewer: {
     readonly " $fragmentSpreads": FragmentRefs<"ContactsListFragment">;
-  } | null;
+  } | null | undefined;
 };
 export type ContactsListRefetchQuery = {
   response: ContactsListRefetchQuery$data;
@@ -122,17 +122,21 @@ return {
                 "selections": [
                   {
                     "alias": null,
-                    "args": null,
+                    "args": [
+                      {
+                        "kind": "Literal",
+                        "name": "height",
+                        "value": 60
+                      },
+                      {
+                        "kind": "Literal",
+                        "name": "width",
+                        "value": 60
+                      }
+                    ],
                     "kind": "ScalarField",
                     "name": "url",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "altText",
-                    "storageKey": null
+                    "storageKey": "url(height:60,width:60)"
                   }
                 ],
                 "storageKey": null
@@ -146,12 +150,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "3f46ff0d6639f39cf854f8a568c83e15",
+    "cacheID": "b0628373da491c6173fa5b9abbbf7fc0",
     "id": null,
     "metadata": {},
     "name": "ContactsListRefetchQuery",
     "operationKind": "query",
-    "text": "query ContactsListRefetchQuery(\n  $search: String = null\n) {\n  viewer {\n    ...ContactsListFragment_40zwac\n  }\n}\n\nfragment ContactRowFragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment ContactsListFragment_40zwac on Viewer {\n  contacts(search: $search) {\n    __typename\n    id\n    ...ContactRowFragment\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n"
+    "text": "query ContactsListRefetchQuery(\n  $search: String = null\n) {\n  viewer {\n    ...ContactsListFragment_40zwac\n  }\n}\n\nfragment ContactRowFragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...ImageFragment_3XLoCc\n  }\n}\n\nfragment ContactsListFragment_40zwac on Viewer {\n  contacts(search: $search) {\n    __typename\n    id\n    ...ContactRowFragment\n  }\n}\n\nfragment ImageFragment_3XLoCc on Image {\n  url(width: 60, height: 60)\n}\n"
   }
 };
 })();

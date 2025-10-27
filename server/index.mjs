@@ -1,5 +1,11 @@
 import http from "http";
-import { execute, validate, validateSchema, parse } from "graphql";
+import graphqlPkg from "graphql";
+const {
+  experimentalExecuteIncrementally: execute,
+  validate,
+  validateSchema,
+  parse,
+} = graphqlPkg;
 import { schema } from "./schema.mjs";
 import { rootValue } from "./resolvers.mjs";
 

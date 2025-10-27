@@ -1,8 +1,8 @@
 import * as React from "react";
-import { graphql } from "relay-runtime";
-import { useFragment } from "react-relay";
-
+import { graphql, useFragment, useMutation } from "react-relay";
+import { ConnectionHandler } from "relay-runtime";
 import type { StoryCommentsComposerFragment$key } from "./__generated__/StoryCommentsComposerFragment.graphql";
+import type { StoryCommentsComposerPostMutation } from "./__generated__/StoryCommentsComposerPostMutation.graphql";
 
 const { useState } = React;
 
@@ -16,16 +16,55 @@ const StoryCommentsComposerFragment = graphql`
   }
 `;
 
+const StoryCommentsComposerPostMutationGraphQL = graphql`
+  mutation StoryCommentsComposerPostMutation(
+    $text: String!
+    $id: ID!
+    $connections: [ID!]!
+  ) {
+    postStoryComment(text: $text, id: $id) {
+      commentEdge @prependEdge(connections: $connections) {
+        node {
+          id
+          ...CommentFragment
+        }
+      }
+    }
+  }
+`;
+
 export default function StoryCommentsComposer({ story }: Props) {
   const data = useFragment(StoryCommentsComposerFragment, story);
   const [text, setText] = useState("");
+  const [commitMutation, isMutationInFlight] =
+    useMutation<StoryCommentsComposerPostMutation>(
+      StoryCommentsComposerPostMutationGraphQL
+    );
+
   function onPost() {
-    // TODO post the comment here
+    if (text.trim() === "") return;
+
+    const connectionID = ConnectionHandler.getConnectionID(
+      data.id,
+      "StoryCommentsSectionFragment_comments"
+    );
+
+    commitMutation({
+      variables: {
+        text,
+        id: data.id,
+        connections: [connectionID],
+      },
+      onCompleted: () => {
+        setText("");
+      },
+    });
   }
+
   return (
     <div className="commentsComposer">
       <TextComposer text={text} onChange={setText} onReturn={onPost} />
-      <PostButton onClick={onPost} />
+      <PostButton onClick={onPost} disabled={isMutationInFlight} />
     </div>
   );
 }
@@ -52,6 +91,16 @@ function TextComposer({
   );
 }
 
-function PostButton({ onClick }: { onClick: () => void }) {
-  return <button onClick={onClick}>Post</button>;
+function PostButton({
+  onClick,
+  disabled,
+}: {
+  onClick: () => void;
+  disabled?: boolean;
+}) {
+  return (
+    <button onClick={onClick} disabled={disabled}>
+      Post
+    </button>
+  );
 }

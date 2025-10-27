@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c1b4226ce465ed92dff46545d290e952>>
+ * @generated SignedSource<<6cfb85a572688c3ac97c5db8c3655e31>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,14 +8,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type PosterBylineFragment$data = {
   readonly id: string;
-  readonly name: string | null;
+  readonly name: string | null | undefined;
   readonly profilePicture: {
     readonly " $fragmentSpreads": FragmentRefs<"ImageFragment">;
-  } | null;
+  } | null | undefined;
   readonly " $fragmentType": "PosterBylineFragment";
 };
 export type PosterBylineFragment$key = {

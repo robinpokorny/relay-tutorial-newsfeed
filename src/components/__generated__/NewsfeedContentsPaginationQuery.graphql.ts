@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1f84545ca4b1a38483754672e2ebcb85>>
+ * @generated SignedSource<<c880f4eb783836f6e39dc382026bdbb5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,47 +10,74 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type NewsfeedQuery$variables = Record<PropertyKey, never>;
-export type NewsfeedQuery$data = {
+export type NewsfeedContentsPaginationQuery$variables = {
+  count?: number | null | undefined;
+  cursor?: string | null | undefined;
+};
+export type NewsfeedContentsPaginationQuery$data = {
   readonly viewer: {
     readonly " $fragmentSpreads": FragmentRefs<"NewsfeedContentsFragment">;
   } | null | undefined;
 };
-export type NewsfeedQuery = {
-  response: NewsfeedQuery$data;
-  variables: NewsfeedQuery$variables;
+export type NewsfeedContentsPaginationQuery = {
+  response: NewsfeedContentsPaginationQuery$data;
+  variables: NewsfeedContentsPaginationQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
 var v0 = [
   {
-    "kind": "Literal",
-    "name": "first",
-    "value": 3
+    "defaultValue": 3,
+    "kind": "LocalArgument",
+    "name": "count"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "cursor"
   }
 ],
-v1 = {
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "count"
+  }
+],
+v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v2 = {
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "__typename",
   "storageKey": null
 },
-v3 = {
+v4 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 3
+  }
+],
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "cursor",
   "storageKey": null
 },
-v4 = {
+v6 = {
   "alias": null,
   "args": null,
   "concreteType": "PageInfo",
@@ -77,10 +104,10 @@ v4 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "NewsfeedQuery",
+    "name": "NewsfeedContentsPaginationQuery",
     "selections": [
       {
         "alias": null,
@@ -91,7 +118,18 @@ return {
         "plural": false,
         "selections": [
           {
-            "args": null,
+            "args": [
+              {
+                "kind": "Variable",
+                "name": "count",
+                "variableName": "count"
+              },
+              {
+                "kind": "Variable",
+                "name": "cursor",
+                "variableName": "cursor"
+              }
+            ],
             "kind": "FragmentSpread",
             "name": "NewsfeedContentsFragment"
           }
@@ -104,9 +142,9 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "NewsfeedQuery",
+    "name": "NewsfeedContentsPaginationQuery",
     "selections": [
       {
         "alias": null,
@@ -118,7 +156,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v0/*: any*/),
+            "args": (v1/*: any*/),
             "concreteType": "StoriesConnection",
             "kind": "LinkedField",
             "name": "newsfeedStories",
@@ -140,7 +178,7 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v1/*: any*/),
+                      (v2/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -163,12 +201,12 @@ return {
                         "name": "poster",
                         "plural": false,
                         "selections": [
-                          (v2/*: any*/),
+                          (v3/*: any*/),
                           {
                             "kind": "TypeDiscriminator",
                             "abstractKey": "__isActor"
                           },
-                          (v1/*: any*/),
+                          (v2/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -253,7 +291,7 @@ return {
                       },
                       {
                         "alias": null,
-                        "args": (v0/*: any*/),
+                        "args": (v4/*: any*/),
                         "concreteType": "CommentsConnection",
                         "kind": "LinkedField",
                         "name": "comments",
@@ -275,7 +313,7 @@ return {
                                 "name": "node",
                                 "plural": false,
                                 "selections": [
-                                  (v1/*: any*/),
+                                  (v2/*: any*/),
                                   {
                                     "alias": null,
                                     "args": null,
@@ -283,42 +321,42 @@ return {
                                     "name": "text",
                                     "storageKey": null
                                   },
-                                  (v2/*: any*/)
+                                  (v3/*: any*/)
                                 ],
                                 "storageKey": null
                               },
-                              (v3/*: any*/)
+                              (v5/*: any*/)
                             ],
                             "storageKey": null
                           },
-                          (v4/*: any*/)
+                          (v6/*: any*/)
                         ],
                         "storageKey": "comments(first:3)"
                       },
                       {
                         "alias": null,
-                        "args": (v0/*: any*/),
+                        "args": (v4/*: any*/),
                         "filters": null,
                         "handle": "connection",
                         "key": "StoryCommentsSectionFragment_comments",
                         "kind": "LinkedHandle",
                         "name": "comments"
                       },
-                      (v2/*: any*/)
+                      (v3/*: any*/)
                     ],
                     "storageKey": null
                   },
-                  (v3/*: any*/)
+                  (v5/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v4/*: any*/)
+              (v6/*: any*/)
             ],
-            "storageKey": "newsfeedStories(first:3)"
+            "storageKey": null
           },
           {
             "alias": null,
-            "args": (v0/*: any*/),
+            "args": (v1/*: any*/),
             "filters": null,
             "handle": "connection",
             "key": "NewsfeedContentsFragment_newsfeedStories",
@@ -331,16 +369,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "2d2f11d5f73d04a1221436e474416aa1",
+    "cacheID": "d1a5286f92557a752dc1f15b2507c5f2",
     "id": null,
     "metadata": {},
-    "name": "NewsfeedQuery",
+    "name": "NewsfeedContentsPaginationQuery",
     "operationKind": "query",
-    "text": "query NewsfeedQuery {\n  viewer {\n    ...NewsfeedContentsFragment\n  }\n}\n\nfragment CommentFragment on Comment {\n  text\n}\n\nfragment ImageFragment_1YYarZ on Image {\n  url(width: 400, height: 400)\n}\n\nfragment ImageFragment_3XLoCc on Image {\n  url(width: 60, height: 60)\n}\n\nfragment NewsfeedContentsFragment on Viewer {\n  newsfeedStories(first: 3) {\n    edges {\n      node {\n        id\n        ...StoryFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment PosterBylineFragment on Actor {\n  __isActor: __typename\n  id\n  name\n  profilePicture {\n    ...ImageFragment_3XLoCc\n  }\n}\n\nfragment StoryCommentsComposerFragment on Story {\n  id\n}\n\nfragment StoryCommentsSectionFragment on Story {\n  comments(first: 3) {\n    edges {\n      node {\n        id\n        ...CommentFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n  ...StoryCommentsComposerFragment\n  id\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  poster {\n    __typename\n    ...PosterBylineFragment\n    id\n  }\n  thumbnail {\n    ...ImageFragment_1YYarZ\n  }\n  ...StoryLikeButtonFragment\n  ...StoryCommentsSectionFragment\n}\n\nfragment StoryLikeButtonFragment on Story {\n  id\n  likeCount\n  doesViewerLike\n}\n"
+    "text": "query NewsfeedContentsPaginationQuery(\n  $count: Int = 3\n  $cursor: String\n) {\n  viewer {\n    ...NewsfeedContentsFragment_1G22uz\n  }\n}\n\nfragment CommentFragment on Comment {\n  text\n}\n\nfragment ImageFragment_1YYarZ on Image {\n  url(width: 400, height: 400)\n}\n\nfragment ImageFragment_3XLoCc on Image {\n  url(width: 60, height: 60)\n}\n\nfragment NewsfeedContentsFragment_1G22uz on Viewer {\n  newsfeedStories(after: $cursor, first: $count) {\n    edges {\n      node {\n        id\n        ...StoryFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment PosterBylineFragment on Actor {\n  __isActor: __typename\n  id\n  name\n  profilePicture {\n    ...ImageFragment_3XLoCc\n  }\n}\n\nfragment StoryCommentsComposerFragment on Story {\n  id\n}\n\nfragment StoryCommentsSectionFragment on Story {\n  comments(first: 3) {\n    edges {\n      node {\n        id\n        ...CommentFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n  ...StoryCommentsComposerFragment\n  id\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  poster {\n    __typename\n    ...PosterBylineFragment\n    id\n  }\n  thumbnail {\n    ...ImageFragment_1YYarZ\n  }\n  ...StoryLikeButtonFragment\n  ...StoryCommentsSectionFragment\n}\n\nfragment StoryLikeButtonFragment on Story {\n  id\n  likeCount\n  doesViewerLike\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a3a27a145ad6a33e50912ec69644bd3d";
+(node as any).hash = "6b5762e056e1daf14ccb948d2e7bccd3";
 
 export default node;

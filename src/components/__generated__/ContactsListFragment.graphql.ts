@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f3018d181e3b49d90119aef8009b37eb>>
+ * @generated SignedSource<<861132d09db1483f18f793e0818d9ca8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,19 +8,21 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ContactsListFragment$data = {
   readonly contacts: ReadonlyArray<{
     readonly id: string;
     readonly " $fragmentSpreads": FragmentRefs<"ContactRowFragment">;
-  } | null> | null;
+  } | null | undefined> | null | undefined;
   readonly " $fragmentType": "ContactsListFragment";
 };
 export type ContactsListFragment$key = {
   readonly " $data"?: ContactsListFragment$data;
   readonly " $fragmentSpreads": FragmentRefs<"ContactsListFragment">;
 };
+
+import ContactsListRefetchQuery_graphql from './ContactsListRefetchQuery.graphql';
 
 const node: ReaderFragment = {
   "argumentDefinitions": [
@@ -37,7 +39,7 @@ const node: ReaderFragment = {
       "fragmentPathInResult": [
         "viewer"
       ],
-      "operation": require('./ContactsListRefetchQuery.graphql')
+      "operation": ContactsListRefetchQuery_graphql
     }
   },
   "name": "ContactsListFragment",

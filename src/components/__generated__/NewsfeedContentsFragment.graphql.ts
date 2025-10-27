@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<54399431dc1e2dd17f145a4f615e01c1>>
+ * @generated SignedSource<<049ccd54f66ec5f48bb83511069eb4fc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,12 +10,12 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type StoryCommentsSectionFragment$data = {
-  readonly comments: {
+export type NewsfeedContentsFragment$data = {
+  readonly newsfeedStories: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
-        readonly " $fragmentSpreads": FragmentRefs<"CommentFragment">;
+        readonly " $fragmentSpreads": FragmentRefs<"StoryFragment">;
       } | null | undefined;
     } | null | undefined> | null | undefined;
     readonly pageInfo: {
@@ -23,28 +23,19 @@ export type StoryCommentsSectionFragment$data = {
       readonly hasNextPage: boolean | null | undefined;
     } | null | undefined;
   } | null | undefined;
-  readonly id: string;
-  readonly " $fragmentSpreads": FragmentRefs<"StoryCommentsComposerFragment">;
-  readonly " $fragmentType": "StoryCommentsSectionFragment";
+  readonly " $fragmentType": "NewsfeedContentsFragment";
 };
-export type StoryCommentsSectionFragment$key = {
-  readonly " $data"?: StoryCommentsSectionFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"StoryCommentsSectionFragment">;
+export type NewsfeedContentsFragment$key = {
+  readonly " $data"?: NewsfeedContentsFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"NewsfeedContentsFragment">;
 };
 
-import StoryCommentsSectionPaginationQuery_graphql from './StoryCommentsSectionPaginationQuery.graphql';
+import NewsfeedContentsPaginationQuery_graphql from './NewsfeedContentsPaginationQuery.graphql';
 
 const node: ReaderFragment = (function(){
 var v0 = [
-  "comments"
-],
-v1 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-};
+  "newsfeedStories"
+];
 return {
   "argumentDefinitions": [
     {
@@ -78,29 +69,25 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [
-        "node"
+        "viewer"
       ],
-      "operation": StoryCommentsSectionPaginationQuery_graphql,
-      "identifierInfo": {
-        "identifierField": "id",
-        "identifierQueryVariableName": "id"
-      }
+      "operation": NewsfeedContentsPaginationQuery_graphql
     }
   },
-  "name": "StoryCommentsSectionFragment",
+  "name": "NewsfeedContentsFragment",
   "selections": [
     {
-      "alias": "comments",
+      "alias": "newsfeedStories",
       "args": null,
-      "concreteType": "CommentsConnection",
+      "concreteType": "StoriesConnection",
       "kind": "LinkedField",
-      "name": "__StoryCommentsSectionFragment_comments_connection",
+      "name": "__NewsfeedContentsFragment_newsfeedStories_connection",
       "plural": false,
       "selections": [
         {
           "alias": null,
           "args": null,
-          "concreteType": "CommentsConnectionEdge",
+          "concreteType": "StoriesConnectionEdge",
           "kind": "LinkedField",
           "name": "edges",
           "plural": true,
@@ -108,16 +95,22 @@ return {
             {
               "alias": null,
               "args": null,
-              "concreteType": "Comment",
+              "concreteType": "Story",
               "kind": "LinkedField",
               "name": "node",
               "plural": false,
               "selections": [
-                (v1/*: any*/),
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "id",
+                  "storageKey": null
+                },
                 {
                   "args": null,
                   "kind": "FragmentSpread",
-                  "name": "CommentFragment"
+                  "name": "StoryFragment"
                 },
                 {
                   "alias": null,
@@ -166,19 +159,13 @@ return {
         }
       ],
       "storageKey": null
-    },
-    {
-      "args": null,
-      "kind": "FragmentSpread",
-      "name": "StoryCommentsComposerFragment"
-    },
-    (v1/*: any*/)
+    }
   ],
-  "type": "Story",
+  "type": "Viewer",
   "abstractKey": null
 };
 })();
 
-(node as any).hash = "c3dcd8d31357a61a8d15d1bb92487485";
+(node as any).hash = "6b5762e056e1daf14ccb948d2e7bccd3";
 
 export default node;
