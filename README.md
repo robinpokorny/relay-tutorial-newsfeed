@@ -1,6 +1,7 @@
 # Newsfeed Application Example - Completed Tutorial
 
-This is a **fully completed** version of the Relay Newsfeed tutorial application. It serves as a working reference implementation that demonstrates the APIs, concepts, and principles of Relay in a full-fledged example application.
+> [!IMPORTANT]  
+> This is a **fully completed** version of the Relay Newsfeed tutorial application. It serves as a working reference implementation that demonstrates the APIs, concepts, and principles of Relay in a full-fledged example application.
 
 ## About This Repository
 
