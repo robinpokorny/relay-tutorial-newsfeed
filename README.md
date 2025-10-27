@@ -1,6 +1,19 @@
-# Newsfeed Application Example
+# Newsfeed Application Example - Completed Tutorial
 
-The Relay application is designed to be used in conjunction with the Relay documentation to demonstrate the APIs, concepts, and principles of Relay and their use in building Relay applications.
+This is a **fully completed** version of the Relay Newsfeed tutorial application. It serves as a working reference implementation that demonstrates the APIs, concepts, and principles of Relay in a full-fledged example application.
+
+## About This Repository
+
+This repository contains the finished state of the [official Relay tutorial](https://relay.dev/docs/tutorial/intro/). All tutorial steps have been completed, making this a complete, working example of a Relay application with GraphQL.
+
+**Original Tutorial**: This project is based on the [Relay tutorial starter code](https://github.com/relayjs/relay-examples/tree/main/newsfeed) from the official Relay examples repository.
+
+If you're looking to follow along with the tutorial step-by-step, you may want to start with the original starter code. This repository is ideal for:
+
+- Reference when working through the tutorial
+- Understanding the final implementation
+- Exploring a complete Relay application example
+- Learning Relay best practices in a working codebase
 
 ## Getting Started
 
